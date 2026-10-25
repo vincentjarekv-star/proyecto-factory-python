@@ -2,9 +2,7 @@
 from abc import ABC, abstractmethod
 
 
-# ==========================================================
-# 1. PRODUCTO ABSTRACTO
-# ==========================================================
+#1. Producto Abstracto
 
 class Notificacion(ABC):
 
@@ -13,9 +11,7 @@ class Notificacion(ABC):
         pass
 
 
-# ==========================================================
-# 2. PRODUCTOS CONCRETOS
-# ==========================================================
+#2. Producto Concreto
 
 class NotificacionEmail(Notificacion):
 
@@ -35,9 +31,7 @@ class NotificacionTelegram(Notificacion):
         print(f"Enviando Telegram: {mensaje}")
 
 
-# ==========================================================
-# 3. CREADOR ABSTRACTO
-# ==========================================================
+#3. Abstracto
 
 class FabricaNotificacion(ABC):
 
@@ -46,9 +40,7 @@ class FabricaNotificacion(ABC):
         pass
 
 
-# ==========================================================
-# 4. CREADORES CONCRETOS
-# ==========================================================
+#4. Concreto
 
 class FabricaEmail(FabricaNotificacion):
 
@@ -68,9 +60,7 @@ class FabricaTelegram(FabricaNotificacion):
         return NotificacionTelegram()
 
 
-# ==========================================================
-# 5. FUNCIONAMIENTO DEL PROGRAMA
-# ==========================================================
+#5. Funcion del programa
 
 def main() -> None:
 
