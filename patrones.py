@@ -2,7 +2,8 @@
 from abc import ABC, abstractmethod
 
 
-# 1. Producto abstracto
+#1. Producto Abstracto
+
 class Notificacion(ABC):
 
     @abstractmethod
@@ -10,7 +11,8 @@ class Notificacion(ABC):
         pass
 
 
-# 2. Productos concretos
+#2. Producto Concreto
+
 class NotificacionEmail(Notificacion):
 
     def enviar(self, mensaje: str) -> None:
@@ -23,7 +25,14 @@ class NotificacionSMS(Notificacion):
         print(f"Enviando SMS: {mensaje}")
 
 
-# 3. Creador abstracto
+class NotificacionTelegram(Notificacion):
+
+    def enviar(self, mensaje: str) -> None:
+        print(f"Enviando Telegram: {mensaje}")
+
+
+#3. Abstracto
+
 class FabricaNotificacion(ABC):
 
     @abstractmethod
@@ -31,7 +40,8 @@ class FabricaNotificacion(ABC):
         pass
 
 
-# 4. Creadores concretos
+#4. Concreto
+
 class FabricaEmail(FabricaNotificacion):
 
     def crear_notificacion(self) -> Notificacion:
@@ -44,7 +54,14 @@ class FabricaSMS(FabricaNotificacion):
         return NotificacionSMS()
 
 
-# 5. Funcionamiento del programa
+class FabricaTelegram(FabricaNotificacion):
+
+    def crear_notificacion(self) -> Notificacion:
+        return NotificacionTelegram()
+
+
+#5. Funcion del programa
+
 def main() -> None:
 
     print("=== PATRON FACTORY METHOD ===")
@@ -56,6 +73,10 @@ def main() -> None:
     fabrica_sms = FabricaSMS()
     notificacion_sms = fabrica_sms.crear_notificacion()
     notificacion_sms.enviar("Su codigo de verificacion es 1234")
+
+    fabrica_telegram = FabricaTelegram()
+    notificacion_telegram = fabrica_telegram.crear_notificacion()
+    notificacion_telegram.enviar("Notificacion enviada desde Telegram")
 
 
 if __name__ == "__main__":
